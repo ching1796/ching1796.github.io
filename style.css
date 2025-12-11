@@ -1102,3 +1102,30 @@ body {
         gap: 1rem;
     }
 }
+/* 確保選擇狀態可見 */
+.zodiac-option.selected {
+    border: 2px solid var(--primary-color) !important;
+    background: rgba(108, 99, 255, 0.2) !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3) !important;
+}
+
+/* 修復性別選擇樣式 */
+.gender-options input[type="radio"]:checked + .gender-option {
+    border: 2px solid currentColor !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 修復性別按鈕樣式 */
+.gender-option.male {
+    background: rgba(33, 150, 243, 0.2) !important;
+    color: #29b6f6 !important;
+    border: 2px solid transparent !important;
+}
+
+.gender-option.female {
+    background: rgba(233, 30, 99, 0.2) !important;
+    color: #f06292 !important;
+    border: 2px solid transparent !important;
+}
