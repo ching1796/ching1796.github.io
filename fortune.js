@@ -227,16 +227,25 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 初始化事件監聽
     function initZodiacSelection() {
-        // 星座選擇互動
+        console.log("開始初始化星座選擇...");
+        
+        // 獲取所有星座選項
         const zodiacOptions = document.querySelectorAll('.zodiac-option');
+        console.log(`找到 ${zodiacOptions.length} 個星座選項`);
+        
+        // 為每個星座選項添加點擊事件
         zodiacOptions.forEach(option => {
             option.addEventListener('click', function() {
                 const zodiac = this.getAttribute('data-zodiac');
                 const parentCard = this.closest('.input-card');
                 
+                console.log(`點擊了星座: ${zodiac}, 父卡片:`, parentCard);
+                
                 // 移除同卡片的其他選擇
                 const siblings = parentCard.querySelectorAll('.zodiac-option');
-                siblings.forEach(sibling => sibling.classList.remove('selected'));
+                siblings.forEach(sibling => {
+                    sibling.classList.remove('selected');
+                });
                 
                 // 標記當前選擇
                 this.classList.add('selected');
@@ -245,67 +254,75 @@ document.addEventListener('DOMContentLoaded', function() {
                 const select = parentCard.querySelector('.hidden-select');
                 if (select) {
                     select.value = zodiac;
+                    console.log(`更新 select 值為: ${zodiac}`);
+                    
+                    // 觸發 change 事件確保值被更新
+                    const event = new Event('change', { bubbles: true });
+                    select.dispatchEvent(event);
+                } else {
+                    console.error('找不到隱藏的 select 元素');
                 }
-                
-                // 輸出調試信息
-                console.log(`選擇了星座: ${zodiac}, 父卡片: ${parentCard.querySelector('h3').textContent}`);
             });
         });
         
         // 設置默認選擇
         const defaultOptions = document.querySelectorAll('.zodiac-option[data-zodiac="牡羊座"]');
-        defaultOptions.forEach(option => {
+        console.log(`找到 ${defaultOptions.length} 個默認牡羊座選項`);
+        
+        defaultOptions.forEach((option, index) => {
             option.classList.add('selected');
             const parentCard = option.closest('.input-card');
             const select = parentCard.querySelector('.hidden-select');
+            
             if (select) {
                 select.value = "牡羊座";
+                console.log(`設置默認 select ${index} 值為: 牡羊座`);
             }
         });
         
         console.log("星座選擇初始化完成");
+        
+        // 測試選擇功能
+        testSelection();
     }
     
-    // 獲取選擇的值
+    // 測試選擇功能
+    function testSelection() {
+        console.log("=== 測試選擇功能 ===");
+        
+        // 手動觸擊一些選項來測試
+        const testOptions = [
+            { selector: '.zodiac-option[data-zodiac="水瓶座"]:first-child', expected: "水瓶座" },
+            { selector: '.zodiac-option[data-zodiac="射手座"]:last-child', expected: "射手座" }
+        ];
+        
+        setTimeout(() => {
+            console.log("選擇測試完成");
+        }, 1000);
+    }
+    
+    // 獲取選擇的值 - 簡化版本
     function getSelectedValues() {
         // 獲取性別
-        let selfGender, otherGender;
-        const selfGenderRadio = document.querySelector('input[name="self-gender"]:checked');
-        const otherGenderRadio = document.querySelector('input[name="other-gender"]:checked');
+        const selfGender = document.querySelector('input[name="self-gender"]:checked')?.value || "男";
+        const otherGender = document.querySelector('input[name="other-gender"]:checked')?.value || "女";
         
-        if (selfGenderRadio) {
-            selfGender = selfGenderRadio.value;
-        } else {
-            selfGender = "男"; // 默認值
+        // 直接從選中的星座選項獲取值
+        let selfZodiac = "牡羊座"; // 默認值
+        let otherZodiac = "牡羊座"; // 默認值
+        
+        // 從"您的資訊"卡片獲取選中的星座
+        const selfCard = document.querySelector('.input-card:first-child');
+        const selfSelected = selfCard?.querySelector('.zodiac-option.selected');
+        if (selfSelected) {
+            selfZodiac = selfSelected.getAttribute('data-zodiac');
         }
         
-        if (otherGenderRadio) {
-            otherGender = otherGenderRadio.value;
-        } else {
-            otherGender = "女"; // 默認值
-        }
-        
-        // 獲取星座（從隱藏的select）
-        let selfZodiac = document.getElementById('self-zodiac-select').value;
-        let otherZodiac = document.getElementById('other-zodiac-select').value;
-        
-        // 如果select沒有值，嘗試從選中的選項獲取
-        if (!selfZodiac || selfZodiac === "") {
-            const selectedOption = document.querySelector('#self-zodiac-select option:checked');
-            if (selectedOption) {
-                selfZodiac = selectedOption.value;
-            } else {
-                selfZodiac = "牡羊座"; // 默認值
-            }
-        }
-        
-        if (!otherZodiac || otherZodiac === "") {
-            const selectedOption = document.querySelector('#other-zodiac-select option:checked');
-            if (selectedOption) {
-                otherZodiac = selectedOption.value;
-            } else {
-                otherZodiac = "牡羊座"; // 默認值
-            }
+        // 從"對方資訊"卡片獲取選中的星座
+        const otherCard = document.querySelector('.input-card:last-child');
+        const otherSelected = otherCard?.querySelector('.zodiac-option.selected');
+        if (otherSelected) {
+            otherZodiac = otherSelected.getAttribute('data-zodiac');
         }
         
         // 輸出調試信息
@@ -316,6 +333,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 執行占卜
     function performFortune() {
+        console.log("開始執行占卜...");
+        
         const { selfGender, otherGender, selfZodiac, otherZodiac } = getSelectedValues();
         const queryKey = `${selfGender}-${selfZodiac},${otherGender}-${otherZodiac}`;
         
@@ -378,6 +397,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 更新顯示
     function updateDisplay(selfGender, otherGender, selfZodiac, otherZodiac, result) {
+        console.log("更新顯示:", selfGender, otherGender, selfZodiac, otherZodiac, result);
+        
         // 更新性別顯示
         selfGenderDisplay.className = `person-gender ${selfGender === '男' ? 'male' : 'female'}`;
         selfGenderDisplay.innerHTML = `<i class="fas fa-${selfGender === '男' ? 'mars' : 'venus'}"></i>`;
@@ -435,21 +456,19 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 綁定占卜按鈕事件
     if (fortuneBtn) {
-        fortuneBtn.addEventListener('click', performFortune);
+        fortuneBtn.addEventListener('click', function() {
+            console.log("占卜按鈕被點擊");
+            performFortune();
+        });
         console.log("占卜按鈕事件綁定完成");
+    } else {
+        console.error("找不到占卜按鈕元素");
     }
-    
-    // 為所有數據庫鍵添加示例數據（實際使用時請替換為完整數據）
-    function initAllData() {
-        console.log("數據庫大小:", Object.keys(compatibilityData).length, "條記錄");
-        console.log("示例查詢鍵: 男-牡羊座,女-水瓶座 =", compatibilityData["男-牡羊座,女-水瓶座"]);
-    }
-    
-    // 初始化數據
-    initAllData();
     
     // 測試函數 - 可以刪除
     function testAllCombinations() {
+        console.log("=== 測試組合 ===");
+        
         const testCases = [
             { selfGender: "男", selfZodiac: "牡羊座", otherGender: "女", otherZodiac: "水瓶座", expected: "大吉" },
             { selfGender: "男", selfZodiac: "巨蟹座", otherGender: "女", otherZodiac: "牡羊座", expected: "大凶" },
@@ -458,7 +477,6 @@ document.addEventListener('DOMContentLoaded', function() {
             { selfGender: "男", selfZodiac: "水瓶座", otherGender: "女", otherZodiac: "射手座", expected: "大吉" }
         ];
         
-        console.log("=== 測試組合 ===");
         testCases.forEach(test => {
             const key = `${test.selfGender}-${test.selfZodiac},${test.otherGender}-${test.otherZodiac}`;
             const result = compatibilityData[key];
@@ -468,5 +486,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // 運行測試
-    testAllCombinations();
+    setTimeout(() => {
+        console.log("初始化完成，準備進行測試...");
+        testAllCombinations();
+        
+        // 模擬點擊測試
+        console.log("嘗試模擬選擇不同的星座...");
+        
+        // 等DOM完全載入後測試
+        setTimeout(() => {
+            const testZodiacs = ["水瓶座", "獅子座", "天蠍座", "射手座"];
+            testZodiacs.forEach(zodiac => {
+                const selector = `.zodiac-option[data-zodiac="${zodiac}"]`;
+                const elements = document.querySelectorAll(selector);
+                console.log(`找到 ${elements.length} 個 ${zodiac} 選項`);
+            });
+        }, 500);
+    }, 1000);
 });
