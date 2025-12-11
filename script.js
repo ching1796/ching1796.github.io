@@ -257,8 +257,8 @@ function performDivination() {
 
 // 設置結果顏色
 function setResultColor(level) {
-    // 移除可能已有的顏色類
-    resultLevel.className = "result-level";
+    // 移除所有顏色類
+    resultLevel.classList.remove("excellent", "good", "average", "bad", "terrible");
     
     // 添加對應的顏色類
     switch(level) {
@@ -280,4 +280,18 @@ function setResultColor(level) {
     }
 }
 
-//
+// 綁定按鈕點擊事件
+goBtn.addEventListener('click', performDivination);
+
+// 初始化：設置默認星座圖標
+document.addEventListener('DOMContentLoaded', function() {
+    // 設置初始星座圖標
+    const selfZodiac = document.getElementById('self-zodiac').value;
+    const otherZodiac = document.getElementById('other-zodiac').value;
+    
+    selfResultIcon.textContent = zodiacIcons[selfZodiac];
+    otherResultIcon.textContent = zodiacIcons[otherZodiac];
+    
+    // 測試：顯示一個示例結果（可選）
+    // performDivination();
+});
