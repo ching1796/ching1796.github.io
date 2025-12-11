@@ -470,7 +470,3 @@ document.addEventListener('DOMContentLoaded', function() {
     // 運行測試
     testAllCombinations();
 });
-    
-    // 初始化數據
-    initAllData();
-});
