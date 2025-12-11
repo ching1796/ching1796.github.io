@@ -1,1 +1,443 @@
+/* 重置與基礎樣式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #f0f0f0;
+    min-height: 100vh;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 標題區域 */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+    color: #ffd166;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+h1 i {
+    margin-right: 15px;
+    color: #ff9e00;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #b0b0d0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* 輸入區域 */
+.input-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    flex: 1;
+    min-width: 300px;
+    background: rgba(255, 255, 255, 0.07);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.input-group h2 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    color: #7ee8fa;
+    border-bottom: 2px solid rgba(126, 232, 250, 0.3);
+    padding-bottom: 10px;
+}
+
+.input-group h2 i {
+    margin-right: 10px;
+}
+
+.gender-selection {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.gender-option {
+    flex: 1;
+}
+
+.gender-option input[type="radio"] {
+    display: none;
+}
+
+.gender-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    border: 2px solid transparent;
+}
+
+.gender-btn i {
+    margin-right: 8px;
+    font-size: 1.2rem;
+}
+
+.gender-btn.male {
+    background: rgba(66, 133, 244, 0.2);
+    color: #8ab4f8;
+}
+
+.gender-btn.female {
+    background: rgba(234, 67, 53, 0.2);
+    color: #f28b82;
+}
+
+.gender-btn.male:hover {
+    background: rgba(66, 133, 244, 0.3);
+}
+
+.gender-btn.female:hover {
+    background: rgba(234, 67, 53, 0.3);
+}
+
+.gender-option input[type="radio"]:checked + .gender-btn {
+    border-color: currentColor;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.select-container {
+    margin-bottom: 15px;
+}
+
+.select-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #b0b0d0;
+}
+
+select {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.3);
+    color: #f0f0f0;
+    font-size: 1rem;
+    font-family: 'Noto Sans TC', sans-serif;
+    transition: all 0.3s ease;
+}
+
+select:focus {
+    outline: none;
+    border-color: #7ee8fa;
+    box-shadow: 0 0 10px rgba(126, 232, 250, 0.5);
+}
+
+/* 動作按鈕 */
+.action-section {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.go-btn {
+    background: linear-gradient(135deg, #ff9e00 0%, #ff6b6b 100%);
+    color: white;
+    border: none;
+    padding: 18px 45px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
+}
+
+.go-btn i {
+    margin-right: 10px;
+}
+
+.go-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(255, 107, 107, 0.6);
+}
+
+.go-btn:active {
+    transform: translateY(-2px);
+}
+
+/* 結果區域 */
+.result-section {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.result-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    color: #ffd166;
+    border-bottom: 2px solid rgba(255, 209, 102, 0.3);
+    padding-bottom: 10px;
+}
+
+.result-section h2 i {
+    margin-right: 10px;
+}
+
+.result-container {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.result-placeholder {
+    text-align: center;
+    color: #b0b0d0;
+}
+
+.result-placeholder i {
+    font-size: 5rem;
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.1);
+}
+
+.result-placeholder p {
+    font-size: 1.2rem;
+}
+
+.result-content {
+    width: 100%;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.result-header {
+    margin-bottom: 30px;
+}
+
+.pair-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.person-info {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px 25px;
+    border-radius: 10px;
+    min-width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.gender-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+}
+
+.gender-icon.male {
+    background: rgba(66, 133, 244, 0.3);
+    color: #8ab4f8;
+}
+
+.gender-icon.female {
+    background: rgba(234, 67, 53, 0.3);
+    color: #f28b82;
+}
+
+.zodiac-icon {
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pair-connector {
+    font-size: 2.5rem;
+    color: #ff6b6b;
+}
+
+.result-main {
+    margin-top: 20px;
+}
+
+.result-level {
+    font-size: 5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.result-desc {
+    font-size: 1.3rem;
+    color: #b0b0d0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* 圖例區域 */
+.legend {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.legend h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #7ee8fa;
+}
+
+.legend h3 i {
+    margin-right: 10px;
+}
+
+.legend-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 200px;
+}
+
+.legend-color {
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+}
+
+.legend-color.excellent {
+    background: linear-gradient(135deg, #56ab2f, #a8e063);
+}
+
+.legend-color.good {
+    background: linear-gradient(135deg, #2196f3, #64b5f6);
+}
+
+.legend-color.average {
+    background: linear-gradient(135deg, #ff9800, #ffb74d);
+}
+
+.legend-color.bad {
+    background: linear-gradient(135deg, #f44336, #e57373);
+}
+
+.legend-color.terrible {
+    background: linear-gradient(135deg, #9c27b0, #ba68c8);
+}
+
+.legend-text {
+    color: #b0b0d0;
+}
+
+/* 頁尾 */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #888;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .input-section {
+        flex-direction: column;
+    }
+    
+    .input-group {
+        min-width: 100%;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    .result-level {
+        font-size: 4rem;
+    }
+    
+    .person-info {
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .input-group, .result-section {
+        padding: 20px;
+    }
+    
+    .go-btn {
+        padding: 15px 30px;
+        font-size: 1.2rem;
+    }
+    
+    .result-level {
+        font-size: 3.5rem;
+    }
+    
+    .legend-items {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
