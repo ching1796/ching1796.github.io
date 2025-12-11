@@ -1,11 +1,166 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>我的網頁</title>
-    <link rel="icon" href="sun.png">
-  </head>
-  <body>
-    123456789
-  </body>
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星座配對占卜</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-star"></i> 星座配對占卜</h1>
+            <p class="subtitle">輸入您與喜歡的人的星座，查看你們的緣分結果！</p>
+        </header>
+        
+        <main>
+            <div class="input-section">
+                <div class="input-group">
+                    <h2><i class="fas fa-user"></i> 您的資訊</h2>
+                    <div class="gender-selection">
+                        <div class="gender-option">
+                            <input type="radio" id="self-male" name="self-gender" value="男" checked>
+                            <label for="self-male" class="gender-btn male">
+                                <i class="fas fa-mars"></i> 男性
+                            </label>
+                        </div>
+                        <div class="gender-option">
+                            <input type="radio" id="self-female" name="self-gender" value="女">
+                            <label for="self-female" class="gender-btn female">
+                                <i class="fas fa-venus"></i> 女性
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="select-container">
+                        <label for="self-zodiac">您的星座</label>
+                        <select id="self-zodiac">
+                            <option value="牡羊座">牡羊座 (3/21-4/19)</option>
+                            <option value="金牛座">金牛座 (4/20-5/20)</option>
+                            <option value="雙子座">雙子座 (5/21-6/21)</option>
+                            <option value="巨蟹座">巨蟹座 (6/22-7/22)</option>
+                            <option value="獅子座">獅子座 (7/23-8/22)</option>
+                            <option value="處女座">處女座 (8/23-9/22)</option>
+                            <option value="天秤座">天秤座 (9/23-10/23)</option>
+                            <option value="天蠍座">天蠍座 (10/24-11/22)</option>
+                            <option value="射手座">射手座 (11/23-12/21)</option>
+                            <option value="摩羯座">摩羯座 (12/22-1/19)</option>
+                            <option value="水瓶座">水瓶座 (1/20-2/18)</option>
+                            <option value="雙魚座">雙魚座 (2/19-3/20)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <h2><i class="fas fa-heart"></i> 喜歡的人的資訊</h2>
+                    <div class="gender-selection">
+                        <div class="gender-option">
+                            <input type="radio" id="other-male" name="other-gender" value="男">
+                            <label for="other-male" class="gender-btn male">
+                                <i class="fas fa-mars"></i> 男性
+                            </label>
+                        </div>
+                        <div class="gender-option">
+                            <input type="radio" id="other-female" name="other-gender" value="女" checked>
+                            <label for="other-female" class="gender-btn female">
+                                <i class="fas fa-venus"></i> 女性
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="select-container">
+                        <label for="other-zodiac">對方的星座</label>
+                        <select id="other-zodiac">
+                            <option value="牡羊座">牡羊座 (3/21-4/19)</option>
+                            <option value="金牛座">金牛座 (4/20-5/20)</option>
+                            <option value="雙子座">雙子座 (5/21-6/21)</option>
+                            <option value="巨蟹座">巨蟹座 (6/22-7/22)</option>
+                            <option value="獅子座">獅子座 (7/23-8/22)</option>
+                            <option value="處女座">處女座 (8/23-9/22)</option>
+                            <option value="天秤座">天秤座 (9/23-10/23)</option>
+                            <option value="天蠍座">天蠍座 (10/24-11/22)</option>
+                            <option value="射手座">射手座 (11/23-12/21)</option>
+                            <option value="摩羯座">摩羯座 (12/22-1/19)</option>
+                            <option value="水瓶座">水瓶座 (1/20-2/18)</option>
+                            <option value="雙魚座">雙魚座 (2/19-3/20)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="action-section">
+                <button id="go-btn" class="go-btn">
+                    <i class="fas fa-magic"></i> 開始占卜
+                </button>
+            </div>
+            
+            <div class="result-section">
+                <h2><i class="fas fa-chart-bar"></i> 配對結果</h2>
+                <div class="result-container">
+                    <div class="result-placeholder">
+                        <i class="fas fa-question-circle"></i>
+                        <p>請輸入星座資訊並點擊「開始占卜」</p>
+                    </div>
+                    <div class="result-content hidden">
+                        <div class="result-header">
+                            <div class="pair-info">
+                                <div class="person-info">
+                                    <span class="gender-icon male"><i class="fas fa-mars"></i></span>
+                                    <span class="zodiac-icon" id="self-result-icon">♈</span>
+                                    <span id="self-result">男-牡羊座</span>
+                                </div>
+                                <div class="pair-connector">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <div class="person-info">
+                                    <span class="gender-icon female"><i class="fas fa-venus"></i></span>
+                                    <span class="zodiac-icon" id="other-result-icon">♈</span>
+                                    <span id="other-result">女-牡羊座</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="result-main">
+                            <div class="result-level" id="result-level">平</div>
+                            <div class="result-desc" id="result-desc">你們的配對結果是平，代表普通緣分。</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="legend">
+                    <h3><i class="fas fa-key"></i> 結果說明</h3>
+                    <div class="legend-items">
+                        <div class="legend-item">
+                            <span class="legend-color excellent"></span>
+                            <span class="legend-text">大吉：最佳配對，緣分極佳</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color good"></span>
+                            <span class="legend-text">吉：良好配對，相處融洽</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color average"></span>
+                            <span class="legend-text">平：普通配對，需要努力</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color bad"></span>
+                            <span class="legend-text">凶：較差配對，挑戰較多</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color terrible"></span>
+                            <span class="legend-text">大凶：困難配對，障礙重重</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>星座配對占卜 | 資訊科技作業 | 僅供娛樂參考</p>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
 </html>
