@@ -1,443 +1,297 @@
-/* 重置與基礎樣式 */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+// 星座圖標映射
+const zodiacIcons = {
+    "牡羊座": "♈",
+    "金牛座": "♉",
+    "雙子座": "♊",
+    "巨蟹座": "♋",
+    "獅子座": "♌",
+    "處女座": "♍",
+    "天秤座": "♎",
+    "天蠍座": "♏",
+    "射手座": "♐",
+    "摩羯座": "♑",
+    "水瓶座": "♒",
+    "雙魚座": "♓"
+};
 
-body {
-    font-family: 'Noto Sans TC', sans-serif;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    color: #f0f0f0;
-    min-height: 100vh;
-    padding: 20px;
-    line-height: 1.6;
-}
-
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* 標題區域 */
-header {
-    text-align: center;
-    margin-bottom: 40px;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-h1 {
-    font-size: 2.8rem;
-    margin-bottom: 10px;
-    color: #ffd166;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-}
-
-h1 i {
-    margin-right: 15px;
-    color: #ff9e00;
-}
-
-.subtitle {
-    font-size: 1.2rem;
-    color: #b0b0d0;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* 輸入區域 */
-.input-section {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin-bottom: 30px;
-}
-
-.input-group {
-    flex: 1;
-    min-width: 300px;
-    background: rgba(255, 255, 255, 0.07);
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-}
-
-.input-group h2 {
-    font-size: 1.6rem;
-    margin-bottom: 20px;
-    color: #7ee8fa;
-    border-bottom: 2px solid rgba(126, 232, 250, 0.3);
-    padding-bottom: 10px;
-}
-
-.input-group h2 i {
-    margin-right: 10px;
-}
-
-.gender-selection {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 25px;
-}
-
-.gender-option {
-    flex: 1;
-}
-
-.gender-option input[type="radio"] {
-    display: none;
-}
-
-.gender-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-    border: 2px solid transparent;
-}
-
-.gender-btn i {
-    margin-right: 8px;
-    font-size: 1.2rem;
-}
-
-.gender-btn.male {
-    background: rgba(66, 133, 244, 0.2);
-    color: #8ab4f8;
-}
-
-.gender-btn.female {
-    background: rgba(234, 67, 53, 0.2);
-    color: #f28b82;
-}
-
-.gender-btn.male:hover {
-    background: rgba(66, 133, 244, 0.3);
-}
-
-.gender-btn.female:hover {
-    background: rgba(234, 67, 53, 0.3);
-}
-
-.gender-option input[type="radio"]:checked + .gender-btn {
-    border-color: currentColor;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.select-container {
-    margin-bottom: 15px;
-}
-
-.select-container label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
-    color: #b0b0d0;
-}
-
-select {
-    width: 100%;
-    padding: 12px 15px;
-    border-radius: 10px;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.3);
-    color: #f0f0f0;
-    font-size: 1rem;
-    font-family: 'Noto Sans TC', sans-serif;
-    transition: all 0.3s ease;
-}
-
-select:focus {
-    outline: none;
-    border-color: #7ee8fa;
-    box-shadow: 0 0 10px rgba(126, 232, 250, 0.5);
-}
-
-/* 動作按鈕 */
-.action-section {
-    text-align: center;
-    margin: 40px 0;
-}
-
-.go-btn {
-    background: linear-gradient(135deg, #ff9e00 0%, #ff6b6b 100%);
-    color: white;
-    border: none;
-    padding: 18px 45px;
-    font-size: 1.4rem;
-    font-weight: bold;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
-}
-
-.go-btn i {
-    margin-right: 10px;
-}
-
-.go-btn:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(255, 107, 107, 0.6);
-}
-
-.go-btn:active {
-    transform: translateY(-2px);
-}
-
-/* 結果區域 */
-.result-section {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    padding: 30px;
-    margin-bottom: 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.result-section h2 {
-    font-size: 1.8rem;
-    margin-bottom: 25px;
-    color: #ffd166;
-    border-bottom: 2px solid rgba(255, 209, 102, 0.3);
-    padding-bottom: 10px;
-}
-
-.result-section h2 i {
-    margin-right: 10px;
-}
-
-.result-container {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 15px;
-    padding: 30px;
-    margin-bottom: 30px;
-    min-height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.result-placeholder {
-    text-align: center;
-    color: #b0b0d0;
-}
-
-.result-placeholder i {
-    font-size: 5rem;
-    margin-bottom: 20px;
-    color: rgba(255, 255, 255, 0.1);
-}
-
-.result-placeholder p {
-    font-size: 1.2rem;
-}
-
-.result-content {
-    width: 100%;
-    text-align: center;
-}
-
-.hidden {
-    display: none;
-}
-
-.result-header {
-    margin-bottom: 30px;
-}
-
-.pair-info {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.person-info {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 15px 25px;
-    border-radius: 10px;
-    min-width: 180px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-.gender-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    font-size: 1.2rem;
-}
-
-.gender-icon.male {
-    background: rgba(66, 133, 244, 0.3);
-    color: #8ab4f8;
-}
-
-.gender-icon.female {
-    background: rgba(234, 67, 53, 0.3);
-    color: #f28b82;
-}
-
-.zodiac-icon {
-    font-size: 2rem;
-    width: 50px;
-    height: 50px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.pair-connector {
-    font-size: 2.5rem;
-    color: #ff6b6b;
-}
-
-.result-main {
-    margin-top: 20px;
-}
-
-.result-level {
-    font-size: 5rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-}
-
-.result-desc {
-    font-size: 1.3rem;
-    color: #b0b0d0;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* 圖例區域 */
-.legend {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 15px;
-    padding: 20px;
-}
-
-.legend h3 {
-    font-size: 1.4rem;
-    margin-bottom: 15px;
-    color: #7ee8fa;
-}
-
-.legend h3 i {
-    margin-right: 10px;
-}
-
-.legend-items {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.legend-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex: 1;
-    min-width: 200px;
-}
-
-.legend-color {
-    width: 25px;
-    height: 25px;
-    border-radius: 5px;
-}
-
-.legend-color.excellent {
-    background: linear-gradient(135deg, #56ab2f, #a8e063);
-}
-
-.legend-color.good {
-    background: linear-gradient(135deg, #2196f3, #64b5f6);
-}
-
-.legend-color.average {
-    background: linear-gradient(135deg, #ff9800, #ffb74d);
-}
-
-.legend-color.bad {
-    background: linear-gradient(135deg, #f44336, #e57373);
-}
-
-.legend-color.terrible {
-    background: linear-gradient(135deg, #9c27b0, #ba68c8);
-}
-
-.legend-text {
-    color: #b0b0d0;
-}
-
-/* 頁尾 */
-footer {
-    text-align: center;
-    padding: 20px;
-    color: #888;
-    font-size: 0.9rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-/* 響應式設計 */
-@media (max-width: 768px) {
-    .input-section {
-        flex-direction: column;
-    }
+// 配對結果數據庫 (根據您提供的數據)
+const compatibilityData = {
+    "男-牡羊座,女-牡羊座": "平",
+    "男-金牛座,女-牡羊座": "平",
+    "男-雙子座,女-牡羊座": "平",
+    "男-巨蟹座,女-牡羊座": "大凶",
+    "男-獅子座,女-牡羊座": "吉",
+    "男-處女座,女-牡羊座": "凶",
+    "男-天秤座,女-牡羊座": "平",
+    "男-天蠍座,女-牡羊座": "平",
+    "男-射手座,女-牡羊座": "吉",
+    "男-摩羯座,女-牡羊座": "凶",
+    "男-水瓶座,女-牡羊座": "大吉",
+    "男-雙魚座,女-牡羊座": "平",
     
-    .input-group {
-        min-width: 100%;
-    }
+    "男-牡羊座,女-金牛座": "平",
+    "男-金牛座,女-金牛座": "平",
+    "男-雙子座,女-金牛座": "平",
+    "男-巨蟹座,女-金牛座": "平",
+    "男-獅子座,女-金牛座": "大凶",
+    "男-處女座,女-金牛座": "平",
+    "男-天秤座,女-金牛座": "凶",
+    "男-天蠍座,女-金牛座": "吉",
+    "男-射手座,女-金牛座": "凶",
+    "男-摩羯座,女-金牛座": "吉",
+    "男-水瓶座,女-金牛座": "平",
+    "男-雙魚座,女-金牛座": "大吉",
     
-    h1 {
-        font-size: 2.2rem;
-    }
+    "男-牡羊座,女-雙子座": "吉",
+    "男-金牛座,女-雙子座": "吉",
+    "男-雙子座,女-雙子座": "平",
+    "男-巨蟹座,女-雙子座": "凶",
+    "男-獅子座,女-雙子座": "平",
+    "男-處女座,女-雙子座": "平",
+    "男-天秤座,女-雙子座": "平",
+    "男-天蠍座,女-雙子座": "平",
+    "男-射手座,女-雙子座": "平",
+    "男-摩羯座,女-雙子座": "凶",
+    "男-水瓶座,女-雙子座": "大吉",
+    "男-雙魚座,女-雙子座": "大凶",
     
-    .result-level {
-        font-size: 4rem;
-    }
+    "男-牡羊座,女-巨蟹座": "凶",
+    "男-金牛座,女-巨蟹座": "吉",
+    "男-雙子座,女-巨蟹座": "平",
+    "男-巨蟹座,女-巨蟹座": "平",
+    "男-獅子座,女-巨蟹座": "平",
+    "男-處女座,女-巨蟹座": "平",
+    "男-天秤座,女-巨蟹座": "大凶",
+    "男-天蠍座,女-巨蟹座": "大吉",
+    "男-射手座,女-巨蟹座": "平",
+    "男-摩羯座,女-巨蟹座": "吉",
+    "男-水瓶座,女-巨蟹座": "凶",
+    "男-雙魚座,女-巨蟹座": "平",
     
-    .person-info {
-        min-width: 150px;
+    "男-牡羊座,女-獅子座": "平",
+    "男-金牛座,女-獅子座": "平",
+    "男-雙子座,女-獅子座": "平",
+    "男-巨蟹座,女-獅子座": "平",
+    "男-獅子座,女-獅子座": "大吉",
+    "男-處女座,女-獅子座": "凶",
+    "男-天秤座,女-獅子座": "凶",
+    "男-天蠍座,女-獅子座": "大凶",
+    "男-射手座,女-獅子座": "吉",
+    "男-摩羯座,女-獅子座": "平",
+    "男-水瓶座,女-獅子座": "平",
+    "男-雙魚座,女-獅子座": "吉",
+    
+    "男-牡羊座,女-處女座": "大凶",
+    "男-金牛座,女-處女座": "平",
+    "男-雙子座,女-處女座": "平",
+    "男-巨蟹座,女-處女座": "吉",
+    "男-獅子座,女-處女座": "平",
+    "男-處女座,女-處女座": "平",
+    "男-天秤座,女-處女座": "平",
+    "男-天蠍座,女-處女座": "大吉",
+    "男-射手座,女-處女座": "凶",
+    "男-摩羯座,女-處女座": "吉",
+    "男-水瓶座,女-處女座": "凶",
+    "男-雙魚座,女-處女座": "平",
+    
+    "男-牡羊座,女-天秤座": "平",
+    "男-金牛座,女-天秤座": "平",
+    "男-雙子座,女-天秤座": "平",
+    "男-巨蟹座,女-天秤座": "大凶",
+    "男-獅子座,女-天秤座": "平",
+    "男-處女座,女-天秤座": "平",
+    "男-天秤座,女-天秤座": "吉",
+    "男-天蠍座,女-天秤座": "平",
+    "男-射手座,女-天秤座": "吉",
+    "男-摩羯座,女-天秤座": "凶",
+    "男-水瓶座,女-天秤座": "大吉",
+    "男-雙魚座,女-天秤座": "凶",
+    
+    "男-牡羊座,女-天蠍座": "凶",
+    "男-金牛座,女-天蠍座": "平",
+    "男-雙子座,女-天蠍座": "平",
+    "男-巨蟹座,女-天蠍座": "吉",
+    "男-獅子座,女-天蠍座": "平",
+    "男-處女座,女-天蠍座": "平",
+    "男-天秤座,女-天蠍座": "平",
+    "男-天蠍座,女-天蠍座": "平",
+    "男-射手座,女-天蠍座": "大凶",
+    "男-摩羯座,女-天蠍座": "吉",
+    "男-水瓶座,女-天蠍座": "凶",
+    "男-雙魚座,女-天蠍座": "大吉",
+    
+    "男-牡羊座,女-射手座": "吉",
+    "男-金牛座,女-射手座": "平",
+    "男-雙子座,女-射手座": "凶",
+    "男-巨蟹座,女-射手座": "平",
+    "男-獅子座,女-射手座": "平",
+    "男-處女座,女-射手座": "凶",
+    "男-天秤座,女-射手座": "平",
+    "男-天蠍座,女-射手座": "吉",
+    "男-射手座,女-射手座": "平",
+    "男-摩羯座,女-射手座": "平",
+    "男-水瓶座,女-射手座": "大吉",
+    "男-雙魚座,女-射手座": "大凶",
+    
+    "男-牡羊座,女-魔羯座": "凶",
+    "男-金牛座,女-魔羯座": "吉",
+    "男-雙子座,女-魔羯座": "凶",
+    "男-巨蟹座,女-魔羯座": "大凶",
+    "男-獅子座,女-魔羯座": "平",
+    "男-處女座,女-魔羯座": "平",
+    "男-天秤座,女-魔羯座": "平",
+    "男-天蠍座,女-魔羯座": "平",
+    "男-射手座,女-魔羯座": "平",
+    "男-摩羯座,女-魔羯座": "凶",
+    "男-水瓶座,女-魔羯座": "吉",
+    "男-雙魚座,女-魔羯座": "大吉",
+    
+    "男-牡羊座,女-水瓶座": "大吉",
+    "男-金牛座,女-水瓶座": "吉",
+    "男-雙子座,女-水瓶座": "平",
+    "男-巨蟹座,女-水瓶座": "凶",
+    "男-獅子座,女-水瓶座": "平",
+    "男-處女座,女-水瓶座": "平",
+    "男-天秤座,女-水瓶座": "吉",
+    "男-天蠍座,女-水瓶座": "凶",
+    "男-射手座,女-水瓶座": "平",
+    "男-摩羯座,女-水瓶座": "大凶",
+    "男-水瓶座,女-水瓶座": "平",
+    "男-雙魚座,女-水瓶座": "平",
+    
+    "男-牡羊座,女-雙魚座": "凶",
+    "男-金牛座,女-雙魚座": "吉",
+    "男-雙子座,女-雙魚座": "凶",
+    "男-巨蟹座,女-雙魚座": "大吉",
+    "男-獅子座,女-雙魚座": "吉",
+    "男-處女座,女-雙魚座": "平",
+    "男-天秤座,女-雙魚座": "大凶",
+    "男-天蠍座,女-雙魚座": "平",
+    "男-射手座,女-雙魚座": "平",
+    "男-摩羯座,女-雙魚座": "平",
+    "男-水瓶座,女-雙魚座": "平",
+    "男-雙魚座,女-雙魚座": "平"
+};
+
+// 結果描述
+const resultDescriptions = {
+    "大吉": "恭喜！你們的配對結果是大吉，代表你們的緣分極佳，非常適合在一起！",
+    "吉": "不錯！你們的配對結果是吉，代表你們相處融洽，有很好的發展潛力。",
+    "平": "普通。你們的配對結果是平，代表緣分一般，需要雙方共同努力經營關係。",
+    "凶": "注意！你們的配對結果是凶，代表關係中可能會遇到一些挑戰和困難。",
+    "大凶": "謹慎！你們的配對結果是大凶，代表關係中可能存在較大的障礙和困難。"
+};
+
+// DOM元素
+const goBtn = document.getElementById('go-btn');
+const resultPlaceholder = document.querySelector('.result-placeholder');
+const resultContent = document.querySelector('.result-content');
+const selfResult = document.getElementById('self-result');
+const otherResult = document.getElementById('other-result');
+const selfResultIcon = document.getElementById('self-result-icon');
+const otherResultIcon = document.getElementById('other-result-icon');
+const resultLevel = document.getElementById('result-level');
+const resultDesc = document.getElementById('result-desc');
+
+// 獲取性別選中值函數
+function getSelectedGender(name) {
+    const selected = document.querySelector(`input[name="${name}"]:checked`);
+    return selected ? selected.value : "男";
+}
+
+// 主函數：執行占卜
+function performDivination() {
+    // 獲取輸入值
+    const selfGender = getSelectedGender("self-gender");
+    const otherGender = getSelectedGender("other-gender");
+    const selfZodiac = document.getElementById('self-zodiac').value;
+    const otherZodiac = document.getElementById('other-zodiac').value;
+    
+    // 生成查詢鍵
+    const queryKey = `${selfGender}-${selfZodiac},${otherGender}-${otherZodiac}`;
+    
+    // 查找結果
+    const result = compatibilityData[queryKey];
+    
+    if (result) {
+        // 更新顯示
+        selfResult.textContent = `${selfGender}-${selfZodiac}`;
+        otherResult.textContent = `${otherGender}-${otherZodiac}`;
+        
+        // 更新圖標
+        selfResultIcon.textContent = zodiacIcons[selfZodiac];
+        otherResultIcon.textContent = zodiacIcons[otherZodiac];
+        
+        // 更新性別圖標
+        const selfGenderIcon = document.querySelector('.person-info:first-child .gender-icon');
+        const otherGenderIcon = document.querySelector('.person-info:last-child .gender-icon');
+        
+        selfGenderIcon.className = `gender-icon ${selfGender === '男' ? 'male' : 'female'}`;
+        selfGenderIcon.innerHTML = `<i class="fas fa-${selfGender === '男' ? 'mars' : 'venus'}"></i>`;
+        
+        otherGenderIcon.className = `gender-icon ${otherGender === '男' ? 'male' : 'female'}`;
+        otherGenderIcon.innerHTML = `<i class="fas fa-${otherGender === '男' ? 'mars' : 'venus'}"></i>`;
+        
+        // 更新結果
+        resultLevel.textContent = result;
+        resultDesc.textContent = resultDescriptions[result] || "未知結果";
+        
+        // 根據結果設置顏色
+        setResultColor(result);
+        
+        // 顯示結果區域
+        resultPlaceholder.classList.add('hidden');
+        resultContent.classList.remove('hidden');
+        
+        // 添加動畫效果
+        resultLevel.style.transform = 'scale(1.1)';
+        setTimeout(() => {
+            resultLevel.style.transform = 'scale(1)';
+        }, 300);
+        
+    } else {
+        // 如果找不到結果，顯示錯誤
+        alert("抱歉，找不到對應的配對結果，請確認輸入的資訊。");
     }
 }
 
-@media (max-width: 480px) {
-    .container {
-        padding: 10px;
-    }
+// 設置結果顏色
+function setResultColor(level) {
+    // 移除所有顏色類
+    resultLevel.classList.remove("excellent", "good", "average", "bad", "terrible");
     
-    .input-group, .result-section {
-        padding: 20px;
-    }
-    
-    .go-btn {
-        padding: 15px 30px;
-        font-size: 1.2rem;
-    }
-    
-    .result-level {
-        font-size: 3.5rem;
-    }
-    
-    .legend-items {
-        flex-direction: column;
-        gap: 10px;
+    // 添加對應的顏色類
+    switch(level) {
+        case "大吉":
+            resultLevel.classList.add("excellent");
+            break;
+        case "吉":
+            resultLevel.classList.add("good");
+            break;
+        case "平":
+            resultLevel.classList.add("average");
+            break;
+        case "凶":
+            resultLevel.classList.add("bad");
+            break;
+        case "大凶":
+            resultLevel.classList.add("terrible");
+            break;
     }
 }
+
+// 綁定按鈕點擊事件
+goBtn.addEventListener('click', performDivination);
+
+// 初始化：設置默認星座圖標
+document.addEventListener('DOMContentLoaded', function() {
+    // 設置初始星座圖標
+    const selfZodiac = document.getElementById('self-zodiac').value;
+    const otherZodiac = document.getElementById('other-zodiac').value;
+    
+    selfResultIcon.textContent = zodiacIcons[selfZodiac];
+    otherResultIcon.textContent = zodiacIcons[otherZodiac];
+    
+    // 測試：顯示一個示例結果（可選）
+    // performDivination();
+});
