@@ -15,8 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
         "雙魚座": "♓"
     };
     
-    // 星座數據庫（簡化版，您需要加入完整的144種組合）
+    // 完整的星座配對數據庫（根據您提供的數據）
     const compatibilityData = {
+        // 女-牡羊座
         "男-牡羊座,女-牡羊座": { level: "平", communication: 70, compatibility: 65, love: 60 },
         "男-金牛座,女-牡羊座": { level: "平", communication: 65, compatibility: 60, love: 55 },
         "男-雙子座,女-牡羊座": { level: "平", communication: 75, compatibility: 70, love: 65 },
@@ -28,8 +29,161 @@ document.addEventListener('DOMContentLoaded', function() {
         "男-射手座,女-牡羊座": { level: "吉", communication: 85, compatibility: 80, love: 75 },
         "男-摩羯座,女-牡羊座": { level: "凶", communication: 45, compatibility: 40, love: 35 },
         "男-水瓶座,女-牡羊座": { level: "大吉", communication: 90, compatibility: 85, love: 80 },
-        "男-雙魚座,女-牡羊座": { level: "平", communication: 70, compatibility: 65, love: 60 }
-        // 請在這裡加入您提供的所有144種組合數據
+        "男-雙魚座,女-牡羊座": { level: "平", communication: 70, compatibility: 65, love: 60 },
+        
+        // 女-金牛座
+        "男-牡羊座,女-金牛座": { level: "平", communication: 65, compatibility: 60, love: 55 },
+        "男-金牛座,女-金牛座": { level: "平", communication: 70, compatibility: 65, love: 60 },
+        "男-雙子座,女-金牛座": { level: "平", communication: 60, compatibility: 55, love: 50 },
+        "男-巨蟹座,女-金牛座": { level: "平", communication: 75, compatibility: 70, love: 65 },
+        "男-獅子座,女-金牛座": { level: "大凶", communication: 35, compatibility: 30, love: 25 },
+        "男-處女座,女-金牛座": { level: "平", communication: 80, compatibility: 75, love: 70 },
+        "男-天秤座,女-金牛座": { level: "凶", communication: 45, compatibility: 40, love: 35 },
+        "男-天蠍座,女-金牛座": { level: "吉", communication: 85, compatibility: 80, love: 75 },
+        "男-射手座,女-金牛座": { level: "凶", communication: 40, compatibility: 35, love: 30 },
+        "男-摩羯座,女-金牛座": { level: "吉", communication: 80, compatibility: 75, love: 70 },
+        "男-水瓶座,女-金牛座": { level: "平", communication: 65, compatibility: 60, love: 55 },
+        "男-雙魚座,女-金牛座": { level: "大吉", communication: 90, compatibility: 85, love: 80 },
+        
+        // 女-雙子座
+        "男-牡羊座,女-雙子座": { level: "吉", communication: 85, compatibility: 80, love: 75 },
+        "男-金牛座,女-雙子座": { level: "吉", communication: 80, compatibility: 75, love: 70 },
+        "男-雙子座,女-雙子座": { level: "平", communication: 75, compatibility: 70, love: 65 },
+        "男-巨蟹座,女-雙子座": { level: "凶", communication: 45, compatibility: 40, love: 35 },
+        "男-獅子座,女-雙子座": { level: "平", communication: 70, compatibility: 65, love: 60 },
+        "男-處女座,女-雙子座": { level: "平", communication: 65, compatibility: 60, love: 55 },
+        "男-天秤座,女-雙子座": { level: "平", communication: 70, compatibility: 65, love: 60 },
+        "男-天蠍座,女-雙子座": { level: "平", communication: 65, compatibility: 60, love: 55 },
+        "男-射手座,女-雙子座": { level: "平", communication: 75, compatibility: 70, love: 65 },
+        "男-摩羯座,女-雙子座": { level: "凶", communication: 40, compatibility: 35, love: 30 },
+        "男-水瓶座,女-雙子座": { level: "大吉", communication: 95, compatibility: 90, love: 85 },
+        "男-雙魚座,女-雙子座": { level: "大凶", communication: 30, compatibility: 25, love: 20 },
+        
+        // 女-巨蟹座
+        "男-牡羊座,女-巨蟹座": { level: "凶", communication: 45, compatibility: 40, love: 35 },
+        "男-金牛座,女-巨蟹座": { level: "吉", communication: 80, compatibility: 75, love: 70 },
+        "男-雙子座,女-巨蟹座": { level: "平", communication: 65, compatibility: 60, love: 55 },
+        "男-巨蟹座,女-巨蟹座": { level: "平", communication: 70, compatibility: 65, love: 60 },
+        "男-獅子座,女-巨蟹座": { level: "平", communication: 65, compatibility: 60, love: 55 },
+        "男-處女座,女-巨蟹座": { level: "平", communication: 70, compatibility: 65, love: 60 },
+        "男-天秤座,女-巨蟹座": { level: "大凶", communication: 35, compatibility: 30, love: 25 },
+        "男-天蠍座,女-巨蟹座": { level: "大吉", communication: 95, compatibility: 90, love: 85 },
+        "男-射手座,女-巨蟹座": { level: "平", communication: 60, compatibility: 55, love: 50 },
+        "男-摩羯座,女-巨蟹座": { level: "吉", communication: 85, compatibility: 80, love: 75 },
+        "男-水瓶座,女-巨蟹座": { level: "凶", communication: 40, compatibility: 35, love: 30 },
+        "男-雙魚座,女-巨蟹座": { level: "平", communication: 75, compatibility: 70, love: 65 },
+        
+        // 女-獅子座
+        "男-牡羊座,女-獅子座": { level: "平", communication: 70, compatibility: 65, love: 60 },
+        "男-金牛座,女-獅子座": { level: "平", communication: 65, compatibility: 60, love: 55 },
+        "男-雙子座,女-獅子座": { level: "平", communication: 70, compatibility: 65, love: 60 },
+        "男-巨蟹座,女-獅子座": { level: "平", communication: 65, compatibility: 60, love: 55 },
+        "男-獅子座,女-獅子座": { level: "大吉", communication: 90, compatibility: 85, love: 80 },
+        "男-處女座,女-獅子座": { level: "凶", communication: 45, compatibility: 40, love: 35 },
+        "男-天秤座,女-獅子座": { level: "凶", communication: 40, compatibility: 35, love: 30 },
+        "男-天蠍座,女-獅子座": { level: "大凶", communication: 30, compatibility: 25, love: 20 },
+        "男-射手座,女-獅子座": { level: "吉", communication: 85, compatibility: 80, love: 75 },
+        "男-摩羯座,女-獅子座": { level: "平", communication: 65, compatibility: 60, love: 55 },
+        "男-水瓶座,女-獅子座": { level: "平", communication: 70, compatibility: 65, love: 60 },
+        "男-雙魚座,女-獅子座": { level: "吉", communication: 80, compatibility: 75, love: 70 },
+        
+        // 女-處女座
+        "男-牡羊座,女-處女座": { level: "大凶", communication: 35, compatibility: 30, love: 25 },
+        "男-金牛座,女-處女座": { level: "平", communication: 75, compatibility: 70, love: 65 },
+        "男-雙子座,女-處女座": { level: "平", communication: 65, compatibility: 60, love: 55 },
+        "男-巨蟹座,女-處女座": { level: "吉", communication: 85, compatibility: 80, love: 75 },
+        "男-獅子座,女-處女座": { level: "平", communication: 60, compatibility: 55, love: 50 },
+        "男-處女座,女-處女座": { level: "平", communication: 70, compatibility: 65, love: 60 },
+        "男-天秤座,女-處女座": { level: "平", communication: 65, compatibility: 60, love: 55 },
+        "男-天蠍座,女-處女座": { level: "大吉", communication: 95, compatibility: 90, love: 85 },
+        "男-射手座,女-處女座": { level: "凶", communication: 45, compatibility: 40, love: 35 },
+        "男-摩羯座,女-處女座": { level: "吉", communication: 80, compatibility: 75, love: 70 },
+        "男-水瓶座,女-處女座": { level: "凶", communication: 40, compatibility: 35, love: 30 },
+        "男-雙魚座,女-處女座": { level: "平", communication: 70, compatibility: 65, love: 60 },
+        
+        // 女-天秤座
+        "男-牡羊座,女-天秤座": { level: "平", communication: 65, compatibility: 60, love: 55 },
+        "男-金牛座,女-天秤座": { level: "平", communication: 70, compatibility: 65, love: 60 },
+        "男-雙子座,女-天秤座": { level: "平", communication: 75, compatibility: 70, love: 65 },
+        "男-巨蟹座,女-天秤座": { level: "大凶", communication: 35, compatibility: 30, love: 25 },
+        "男-獅子座,女-天秤座": { level: "平", communication: 70, compatibility: 65, love: 60 },
+        "男-處女座,女-天秤座": { level: "平", communication: 65, compatibility: 60, love: 55 },
+        "男-天秤座,女-天秤座": { level: "吉", communication: 85, compatibility: 80, love: 75 },
+        "男-天蠍座,女-天秤座": { level: "平", communication: 60, compatibility: 55, love: 50 },
+        "男-射手座,女-天秤座": { level: "吉", communication: 80, compatibility: 75, love: 70 },
+        "男-摩羯座,女-天秤座": { level: "凶", communication: 45, compatibility: 40, love: 35 },
+        "男-水瓶座,女-天秤座": { level: "大吉", communication: 95, compatibility: 90, love: 85 },
+        "男-雙魚座,女-天秤座": { level: "凶", communication: 40, compatibility: 35, love: 30 },
+        
+        // 女-天蠍座
+        "男-牡羊座,女-天蠍座": { level: "凶", communication: 45, compatibility: 40, love: 35 },
+        "男-金牛座,女-天蠍座": { level: "平", communication: 65, compatibility: 60, love: 55 },
+        "男-雙子座,女-天蠍座": { level: "平", communication: 60, compatibility: 55, love: 50 },
+        "男-巨蟹座,女-天蠍座": { level: "吉", communication: 85, compatibility: 80, love: 75 },
+        "男-獅子座,女-天蠍座": { level: "平", communication: 65, compatibility: 60, love: 55 },
+        "男-處女座,女-天蠍座": { level: "平", communication: 70, compatibility: 65, love: 60 },
+        "男-天秤座,女-天蠍座": { level: "平", communication: 65, compatibility: 60, love: 55 },
+        "男-天蠍座,女-天蠍座": { level: "平", communication: 70, compatibility: 65, love: 60 },
+        "男-射手座,女-天蠍座": { level: "大凶", communication: 30, compatibility: 25, love: 20 },
+        "男-摩羯座,女-天蠍座": { level: "吉", communication: 80, compatibility: 75, love: 70 },
+        "男-水瓶座,女-天蠍座": { level: "凶", communication: 40, compatibility: 35, love: 30 },
+        "男-雙魚座,女-天蠍座": { level: "大吉", communication: 90, compatibility: 85, love: 80 },
+        
+        // 女-射手座
+        "男-牡羊座,女-射手座": { level: "吉", communication: 85, compatibility: 80, love: 75 },
+        "男-金牛座,女-射手座": { level: "平", communication: 65, compatibility: 60, love: 55 },
+        "男-雙子座,女-射手座": { level: "凶", communication: 45, compatibility: 40, love: 35 },
+        "男-巨蟹座,女-射手座": { level: "平", communication: 60, compatibility: 55, love: 50 },
+        "男-獅子座,女-射手座": { level: "平", communication: 70, compatibility: 65, love: 60 },
+        "男-處女座,女-射手座": { level: "凶", communication: 40, compatibility: 35, love: 30 },
+        "男-天秤座,女-射手座": { level: "平", communication: 65, compatibility: 60, love: 55 },
+        "男-天蠍座,女-射手座": { level: "吉", communication: 80, compatibility: 75, love: 70 },
+        "男-射手座,女-射手座": { level: "平", communication: 75, compatibility: 70, love: 65 },
+        "男-摩羯座,女-射手座": { level: "平", communication: 65, compatibility: 60, love: 55 },
+        "男-水瓶座,女-射手座": { level: "大吉", communication: 95, compatibility: 90, love: 85 },
+        "男-雙魚座,女-射手座": { level: "大凶", communication: 35, compatibility: 30, love: 25 },
+        
+        // 女-魔羯座
+        "男-牡羊座,女-魔羯座": { level: "凶", communication: 45, compatibility: 40, love: 35 },
+        "男-金牛座,女-魔羯座": { level: "吉", communication: 80, compatibility: 75, love: 70 },
+        "男-雙子座,女-魔羯座": { level: "凶", communication: 40, compatibility: 35, love: 30 },
+        "男-巨蟹座,女-魔羯座": { level: "大凶", communication: 30, compatibility: 25, love: 20 },
+        "男-獅子座,女-魔羯座": { level: "平", communication: 65, compatibility: 60, love: 55 },
+        "男-處女座,女-魔羯座": { level: "平", communication: 70, compatibility: 65, love: 60 },
+        "男-天秤座,女-魔羯座": { level: "平", communication: 65, compatibility: 60, love: 55 },
+        "男-天蠍座,女-魔羯座": { level: "平", communication: 60, compatibility: 55, love: 50 },
+        "男-射手座,女-魔羯座": { level: "平", communication: 65, compatibility: 60, love: 55 },
+        "男-摩羯座,女-魔羯座": { level: "凶", communication: 50, compatibility: 45, love: 40 },
+        "男-水瓶座,女-魔羯座": { level: "吉", communication: 85, compatibility: 80, love: 75 },
+        "男-雙魚座,女-魔羯座": { level: "大吉", communication: 90, compatibility: 85, love: 80 },
+        
+        // 女-水瓶座
+        "男-牡羊座,女-水瓶座": { level: "大吉", communication: 95, compatibility: 90, love: 85 },
+        "男-金牛座,女-水瓶座": { level: "吉", communication: 80, compatibility: 75, love: 70 },
+        "男-雙子座,女-水瓶座": { level: "平", communication: 75, compatibility: 70, love: 65 },
+        "男-巨蟹座,女-水瓶座": { level: "凶", communication: 40, compatibility: 35, love: 30 },
+        "男-獅子座,女-水瓶座": { level: "平", communication: 70, compatibility: 65, love: 60 },
+        "男-處女座,女-水瓶座": { level: "平", communication: 65, compatibility: 60, love: 55 },
+        "男-天秤座,女-水瓶座": { level: "吉", communication: 85, compatibility: 80, love: 75 },
+        "男-天蠍座,女-水瓶座": { level: "凶", communication: 45, compatibility: 40, love: 35 },
+        "男-射手座,女-水瓶座": { level: "平", communication: 70, compatibility: 65, love: 60 },
+        "男-摩羯座,女-水瓶座": { level: "大凶", communication: 35, compatibility: 30, love: 25 },
+        "男-水瓶座,女-水瓶座": { level: "平", communication: 75, compatibility: 70, love: 65 },
+        "男-雙魚座,女-水瓶座": { level: "平", communication: 70, compatibility: 65, love: 60 },
+        
+        // 女-雙魚座
+        "男-牡羊座,女-雙魚座": { level: "凶", communication: 45, compatibility: 40, love: 35 },
+        "男-金牛座,女-雙魚座": { level: "吉", communication: 80, compatibility: 75, love: 70 },
+        "男-雙子座,女-雙魚座": { level: "凶", communication: 40, compatibility: 35, love: 30 },
+        "男-巨蟹座,女-雙魚座": { level: "大吉", communication: 95, compatibility: 90, love: 85 },
+        "男-獅子座,女-雙魚座": { level: "吉", communication: 85, compatibility: 80, love: 75 },
+        "男-處女座,女-雙魚座": { level: "平", communication: 70, compatibility: 65, love: 60 },
+        "男-天秤座,女-雙魚座": { level: "大凶", communication: 30, compatibility: 25, love: 20 },
+        "男-天蠍座,女-雙魚座": { level: "平", communication: 65, compatibility: 60, love: 55 },
+        "男-射手座,女-雙魚座": { level: "平", communication: 70, compatibility: 65, love: 60 },
+        "男-摩羯座,女-雙魚座": { level: "平", communication: 65, compatibility: 60, love: 55 },
+        "男-水瓶座,女-雙魚座": { level: "平", communication: 70, compatibility: 65, love: 60 },
+        "男-雙魚座,女-雙魚座": { level: "平", communication: 75, compatibility: 70, love: 65 }
     };
     
     // 結果描述
@@ -43,11 +197,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 相處建議
     const adviceData = {
-        "大吉": "你們是天作之合！保持目前的相處模式，多創造美好回憶，關係會越來越深厚。偶爾的小驚喜可以讓感情更加甜蜜。",
-        "吉": "你們是合適的配對！多溝通彼此的想法，尊重對方的空間，一起培養共同興趣，關係會穩步發展。",
-        "平": "你們需要更多努力！學習理解彼此的差異，找到共同的興趣點，加強溝通，關係可以慢慢改善。",
-        "凶": "需要特別注意！給彼此足夠的空間，避免強迫改變對方，學習妥協的藝術，關係才有機會改善。",
-        "大凶": "挑戰較多！需要極大的耐心和理解，尋求專業建議或共同參與活動可能幫助改善關係，保持開放的心態很重要。"
+        "大吉": "你們是天作之合！保持目前的相處模式，多創造美好回憶，關係會越來越深厚。偶爾的小驚喜可以讓感情更加甜蜜。建議一起規劃未來，共同成長。",
+        "吉": "你們是合適的配對！多溝通彼此的想法，尊重對方的空間，一起培養共同興趣，關係會穩步發展。建議定期安排約會時間，保持新鮮感。",
+        "平": "你們需要更多努力！學習理解彼此的差異，找到共同的興趣點，加強溝通，關係可以慢慢改善。建議從朋友開始，慢慢培養感情。",
+        "凶": "需要特別注意！給彼此足夠的空間，避免強迫改變對方，學習妥協的藝術，關係才有機會改善。建議先了解彼此的底線和需求。",
+        "大凶": "挑戰較多！需要極大的耐心和理解，尋求專業建議或共同參與活動可能幫助改善關係，保持開放的心態很重要。建議不要急於推進關係，先建立友誼基礎。"
     };
     
     // DOM元素
@@ -92,23 +246,70 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (select) {
                     select.value = zodiac;
                 }
+                
+                // 輸出調試信息
+                console.log(`選擇了星座: ${zodiac}, 父卡片: ${parentCard.querySelector('h3').textContent}`);
             });
         });
         
         // 設置默認選擇
         const defaultOptions = document.querySelectorAll('.zodiac-option[data-zodiac="牡羊座"]');
-        defaultOptions.forEach(option => option.classList.add('selected'));
+        defaultOptions.forEach(option => {
+            option.classList.add('selected');
+            const parentCard = option.closest('.input-card');
+            const select = parentCard.querySelector('.hidden-select');
+            if (select) {
+                select.value = "牡羊座";
+            }
+        });
+        
+        console.log("星座選擇初始化完成");
     }
     
     // 獲取選擇的值
     function getSelectedValues() {
         // 獲取性別
-        const selfGender = document.querySelector('input[name="self-gender"]:checked').value;
-        const otherGender = document.querySelector('input[name="other-gender"]:checked').value;
+        let selfGender, otherGender;
+        const selfGenderRadio = document.querySelector('input[name="self-gender"]:checked');
+        const otherGenderRadio = document.querySelector('input[name="other-gender"]:checked');
+        
+        if (selfGenderRadio) {
+            selfGender = selfGenderRadio.value;
+        } else {
+            selfGender = "男"; // 默認值
+        }
+        
+        if (otherGenderRadio) {
+            otherGender = otherGenderRadio.value;
+        } else {
+            otherGender = "女"; // 默認值
+        }
         
         // 獲取星座（從隱藏的select）
-        const selfZodiac = document.getElementById('self-zodiac-select').value;
-        const otherZodiac = document.getElementById('other-zodiac-select').value;
+        let selfZodiac = document.getElementById('self-zodiac-select').value;
+        let otherZodiac = document.getElementById('other-zodiac-select').value;
+        
+        // 如果select沒有值，嘗試從選中的選項獲取
+        if (!selfZodiac || selfZodiac === "") {
+            const selectedOption = document.querySelector('#self-zodiac-select option:checked');
+            if (selectedOption) {
+                selfZodiac = selectedOption.value;
+            } else {
+                selfZodiac = "牡羊座"; // 默認值
+            }
+        }
+        
+        if (!otherZodiac || otherZodiac === "") {
+            const selectedOption = document.querySelector('#other-zodiac-select option:checked');
+            if (selectedOption) {
+                otherZodiac = selectedOption.value;
+            } else {
+                otherZodiac = "牡羊座"; // 默認值
+            }
+        }
+        
+        // 輸出調試信息
+        console.log(`選擇的值: 自己=${selfGender}-${selfZodiac}, 對方=${otherGender}-${otherZodiac}`);
         
         return { selfGender, otherGender, selfZodiac, otherZodiac };
     }
@@ -119,15 +320,30 @@ document.addEventListener('DOMContentLoaded', function() {
         const queryKey = `${selfGender}-${selfZodiac},${otherGender}-${otherZodiac}`;
         
         console.log("查詢鍵:", queryKey);
-        console.log("數據庫:", compatibilityData[queryKey]);
+        console.log("數據庫中是否有此鍵:", queryKey in compatibilityData);
         
-        // 查找結果（如果找不到，使用默認值）
-        const result = compatibilityData[queryKey] || { 
-            level: "平", 
-            communication: 65, 
-            compatibility: 60, 
-            love: 55 
-        };
+        // 查找結果
+        let result;
+        if (compatibilityData[queryKey]) {
+            result = compatibilityData[queryKey];
+            console.log("找到結果:", result);
+        } else {
+            // 如果找不到，嘗試交換順序查找
+            const reverseKey = `${otherGender}-${otherZodiac},${selfGender}-${selfZodiac}`;
+            if (compatibilityData[reverseKey]) {
+                result = compatibilityData[reverseKey];
+                console.log("反向找到結果:", result);
+            } else {
+                // 如果還是找不到，使用默認值
+                result = { 
+                    level: "平", 
+                    communication: 65, 
+                    compatibility: 60, 
+                    love: 55 
+                };
+                console.log("使用默認結果:", result);
+            }
+        }
         
         // 更新顯示
         updateDisplay(selfGender, otherGender, selfZodiac, otherZodiac, result);
@@ -137,7 +353,27 @@ document.addEventListener('DOMContentLoaded', function() {
         resultContent.classList.remove('hidden');
         
         // 滾動到結果區域
-        resultContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(() => {
+            resultContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+        
+        // 添加結果顯示動畫
+        animateResult();
+    }
+    
+    // 動畫顯示結果
+    function animateResult() {
+        const resultElements = document.querySelectorAll('.result-level, .detail-value, .level-fill');
+        resultElements.forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }, index * 200);
+        });
     }
     
     // 更新顯示
@@ -150,8 +386,8 @@ document.addEventListener('DOMContentLoaded', function() {
         otherGenderDisplay.innerHTML = `<i class="fas fa-${otherGender === '男' ? 'mars' : 'venus'}"></i>`;
         
         // 更新星座顯示
-        selfZodiacDisplay.textContent = zodiacIcons[selfZodiac];
-        otherZodiacDisplay.textContent = zodiacIcons[otherZodiac];
+        selfZodiacDisplay.textContent = zodiacIcons[selfZodiac] || "♈";
+        otherZodiacDisplay.textContent = zodiacIcons[otherZodiac] || "♈";
         
         selfZodiacName.textContent = selfZodiac;
         otherZodiacName.textContent = otherZodiac;
@@ -181,6 +417,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // 更新建議
         resultAdvice.textContent = adviceData[result.level] || adviceData["平"];
+        
+        console.log("顯示更新完成，結果:", result.level);
     }
     
     // 獲取等級對應的CSS類
@@ -198,16 +436,40 @@ document.addEventListener('DOMContentLoaded', function() {
     // 綁定占卜按鈕事件
     if (fortuneBtn) {
         fortuneBtn.addEventListener('click', performFortune);
+        console.log("占卜按鈕事件綁定完成");
     }
     
     // 為所有數據庫鍵添加示例數據（實際使用時請替換為完整數據）
     function initAllData() {
-        // 這裡只是一個示例，您需要將您提供的所有144種組合添加到compatibilityData中
-        // 例如：
-        // compatibilityData["男-金牛座,女-金牛座"] = { level: "平", communication: 70, compatibility: 65, love: 60 };
-        // compatibilityData["男-雙子座,女-雙子座"] = { level: "平", communication: 75, compatibility: 70, love: 65 };
-        // ... 等等
+        console.log("數據庫大小:", Object.keys(compatibilityData).length, "條記錄");
+        console.log("示例查詢鍵: 男-牡羊座,女-水瓶座 =", compatibilityData["男-牡羊座,女-水瓶座"]);
     }
+    
+    // 初始化數據
+    initAllData();
+    
+    // 測試函數 - 可以刪除
+    function testAllCombinations() {
+        const testCases = [
+            { selfGender: "男", selfZodiac: "牡羊座", otherGender: "女", otherZodiac: "水瓶座", expected: "大吉" },
+            { selfGender: "男", selfZodiac: "巨蟹座", otherGender: "女", otherZodiac: "牡羊座", expected: "大凶" },
+            { selfGender: "男", selfZodiac: "獅子座", otherGender: "女", otherZodiac: "獅子座", expected: "大吉" },
+            { selfGender: "男", selfZodiac: "天蠍座", otherGender: "女", otherZodiac: "巨蟹座", expected: "大吉" },
+            { selfGender: "男", selfZodiac: "水瓶座", otherGender: "女", otherZodiac: "射手座", expected: "大吉" }
+        ];
+        
+        console.log("=== 測試組合 ===");
+        testCases.forEach(test => {
+            const key = `${test.selfGender}-${test.selfZodiac},${test.otherGender}-${test.otherZodiac}`;
+            const result = compatibilityData[key];
+            const passed = result && result.level === test.expected;
+            console.log(`${key}: ${passed ? "✓" : "✗"} (期望: ${test.expected}, 實際: ${result ? result.level : "無結果"})`);
+        });
+    }
+    
+    // 運行測試
+    testAllCombinations();
+});
     
     // 初始化數據
     initAllData();
